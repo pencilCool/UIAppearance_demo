@@ -15,7 +15,7 @@ class SettingsTableViewController: UITableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.done, target: self, action: "dismiss")
+    navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.done, target: self, action: #selector(SettingsTableViewController.dismiss as (SettingsTableViewController) -> () -> ()))
   }
   
   func dismiss() {
