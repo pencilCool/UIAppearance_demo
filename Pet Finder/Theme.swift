@@ -36,5 +36,18 @@ struct ThemeManager {
     }
     
     
+    static func apply(theme: Theme) {
+        // 1
+        UserDefaults.standard.setValue(theme.rawValue, forKey: SelectedThemeKey)
+        UserDefaults.standard.synchronize()
+        
+        // 2
+        let sharedApplication = UIApplication.shared
+        sharedApplication.delegate?.window??.tintColor = theme.mainColor
+    }
+    
+    
+    
+    
 }
 
