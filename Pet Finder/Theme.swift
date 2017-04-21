@@ -21,6 +21,21 @@ enum Theme:Int {
             return UIColor(red: 10.0/255.0, green: 10.0/255.0, blue: 10.0/255.0, alpha: 1.0)
         }
     }
+    
+    var barStyle: UIBarStyle {
+        switch self {
+        case .Default, .Graphical:
+            return .default
+        case .Dark:
+            return .black
+        }
+    }
+    
+    var navigationBackgroundImage: UIImage? {
+        return self == .Graphical ? UIImage(named: "navBackground") : nil
+    }
+    
+    
 }
 
 let SelectedThemeKey = "SelectedTheme"
@@ -44,7 +59,26 @@ struct ThemeManager {
         // 2
         let sharedApplication = UIApplication.shared
         sharedApplication.delegate?.window??.tintColor = theme.mainColor
+        
+        UINavigationBar.appearance().barStyle = theme.barStyle
+        UINavigationBar.appearance().setBackgroundImage(theme.navigationBackgroundImage, for: .default)
+        
+        // back 按钮自定义  https://koenig-media.raywenderlich.com/uploads/2015/06/mask1.gif
+        UINavigationBar.appearance().backIndicatorImage = UIImage(named: "backArrow")
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMask")
+      
+        // 使得back 按钮的字样在作 回退的时候是潜入到回退图标的下面 https://koenig-media.raywenderlich.com/uploads/2015/06/mask2.gif
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrow")
+        
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "backArrowMaskFixed")
+        
+        
+        
     }
+    
+    
+ 
+    
     
     
     
