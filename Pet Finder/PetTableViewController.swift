@@ -43,6 +43,8 @@ class PetTableViewController: UITableViewController, UIPopoverPresentationContro
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    view.backgroundColor = ThemeManager.currentTheme().backgroundColor
+    tableView.separatorColor = ThemeManager.currentTheme().secondaryColor
   }
     
   // MARK: - Search
@@ -86,7 +88,7 @@ class PetTableViewController: UITableViewController, UIPopoverPresentationContro
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "PetCell", for: indexPath) as! UITableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: "PetCell", for: indexPath) 
     
     cell.imageView!.image = UIImage(named: "pet\(indexPath.row)")
     cell.imageView!.layer.masksToBounds = true
@@ -95,6 +97,10 @@ class PetTableViewController: UITableViewController, UIPopoverPresentationContro
     cell.detailTextLabel!.text = pets[indexPath.row].type
 
     cell.textLabel!.text = pets[indexPath.row].name
+    
+    
+    cell.textLabel!.font = UIFont(name: "Zapfino", size: 14.0)
+    
     
     return cell
   }
